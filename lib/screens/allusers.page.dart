@@ -19,10 +19,10 @@ class _AllUsersState extends State<AllUsers> {
     List<User> allUsers = [];
 
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
+      body: FutureBuilder<QuerySnapshot>(
 
         // Recuperation de tous les documents
-        stream: FirebaseFirestore.instance.collection('users').orderBy('name').snapshots(),
+        future: FirebaseFirestore.instance.collection('users').orderBy('name').get(),
         builder: (context, snp){
           if(snp.hasError){
             return Center(child: Text('Error'),);
